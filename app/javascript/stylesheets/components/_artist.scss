@@ -2,7 +2,7 @@
   &-avatar {
     filter: brightness(100%);
 
-    @apply w-32 h-32 rounded-full border-2 border-primary overflow-hidden;
+    @apply w-32 h-32 rounded-full border-2 border-secondary overflow-hidden;
   }
 
   &:hover &-avatar {

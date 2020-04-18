@@ -1,4 +1,4 @@
-<h1 class="font-bold text-xl text-black">Artists</h1>
+<h1 class="font-bold text-4xl text-black mx-auto w-full flex justify-center">Artists</h1>
 
 <div class="flex justify-center items-center">
   <% @artists.each do |artist| %>
@@ -13,14 +13,18 @@
   <% end %>
 </div>
 
-<div class="mt-4">
-  <h3 class="font-bold text-lg"><%= @artist.name %> Discography</h3>
+<div class="mt-8 p-4">
+  <div class="mb-4">
+    <h3 class="font-bold text-xl"><%= @artist.name %> Discography</h3>
+    <%= link_to "Visit artist's page", artist_path(@artist), class: 'underline' %>
+  </div>
 
   <ul>
     <% @artist.albums.each do |album| %>
-      <li><%= album.title %></li>
+      <li class="mb-4">
+        <%= image_tag album.image_url, class: 'w-32 h-32 rounded border-2 border-secondary overflow-hidden' %>
+        <h5 class="font-bold"><%= album.title %></h5>
+      </li>
     <% end %>
   </ul>
-
-  <%= link_to "Visit artist's page", artist_path(@artist) %>
 </div>

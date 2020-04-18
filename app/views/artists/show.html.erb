@@ -1,24 +1,32 @@
-<h1><%= @artist.name %></h1>
+<div class="mb-4">
+  <%= image_tag @artist.image_url, class: 'artist-avatar' %>
+  <h1 class="font-bold text-xl"><%= @artist.name %></h1>
+  <%= @artist.formatted_tags %>
+</div>
 
-<%= @artist.formatted_tags %>
 
 <%= form_with(url: artist_tags_path(@artist), local: true) do |form| %>
-  <%= form.text_field :tags, placeholder: 'Add tags separated by commas' %>
-  <%= form.submit %>
+  <%= form.text_field :tags, placeholder: 'Add tags separated by commas', class: 'border border-r-none rounded rounded-r-none p-2 w-1/3 focus:border-warning outline-none' %>
+  <%= form.submit class: 'border rounded rounded-l-none b-primary bg-primary text-white px-6 py-2 cursor-pointer transform -translate-x-2 h-11' %>
 <% end %>
 
 <br>
 
-<%= link_to 'Add an Album', new_artist_album_path(@artist) %>
+<div class="mb-4">
+  <h3 class="font-bold text-xl">Discography</h3>
+  <%= link_to "Add an Album", new_artist_album_path(@artist), class: 'text-sm underline' %>
 
-
-<h3>Albums</h3>
+  <div class="mt-2">
+    <%= render 'albums/form' %>
+  </div>
+</div>
 
 <ul>
   <% @artist.albums.each do |album| %>
-    <li>
-      <%= album.title %> |
-      <%= link_to 'Remove album', album_path(album), method: :delete %>
+    <li class="mb-4">
+      <%= image_tag album.image_url, class: 'w-32 h-32 rounded border-2 border-secondary overflow-hidden relative' %>
+      <h5 class="font-bold"><%= album.title %></h5>
+      <%= link_to 'Remove album', album_path(album), class: 'text-sm underline', method: :delete %>
     </li>
   <% end %>
 </ul>

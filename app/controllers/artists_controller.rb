@@ -13,7 +13,9 @@ class ArtistsController < ApplicationController
               end
   end
 
-  def show; end
+  def show
+    @album = Album.new
+  end
 
   def new
     @artist = Artist.new

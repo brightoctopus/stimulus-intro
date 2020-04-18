@@ -1,5 +1,5 @@
 class Artist < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :image_url, presence: true
 
   has_many :albums, dependent: :destroy
   has_many :artist_tags, dependent: :destroy 
