@@ -10,9 +10,9 @@ class AlbumsController < ApplicationController
     @album.artist = @artist
 
     if @album.save
-      redirect_to @artist
+      request.xhr? ? render_album : redirect_to(@artist)
     else
-      render :new
+      request.xhr? ? render_form : render(:new)
     end
   end
 
@@ -30,6 +30,14 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:title)
+    params.require(:album).permit(:title, :image_url)
+  end
+
+  def render_form
+    render partial: 'albums/form'
+  end
+
+  def render_album
+    render @album
   end
 end

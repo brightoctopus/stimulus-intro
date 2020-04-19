@@ -1,0 +1,5 @@
+<li class="mb-4">
+  <%= image_tag album.image_url, class: 'w-32 h-32 rounded border-2 border-secondary overflow-hidden relative' %>
+  <h5 class="font-bold"><%= album.title %></h5>
+  <%= link_to 'Remove album', album_path(album), class: 'text-sm underline', method: :delete %>
+</li>

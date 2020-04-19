@@ -12,21 +12,21 @@
 
 <br>
 
-<div class="mb-4">
-  <h3 class="font-bold text-xl">Discography</h3>
-  <%= link_to "Add an Album", new_artist_album_path(@artist), class: 'text-sm underline' %>
+<div data-controller="albums">
+  <div class="mb-4">
+    <h3 class="font-bold text-xl">Discography</h3>
+    <%= link_to "Add an Album", new_artist_album_path(@artist),
+                                data: {
+                                  action: 'click->albums#showForm'
+                                },
+                                class: 'text-sm underline' %>
 
-  <div class="mt-2">
-    <%= render 'albums/form' %>
+    <div class="hidden mt-2" data-target="albums.formContainer">
+      <%= render 'albums/form' %>
+    </div>
   </div>
-</div>
 
-<ul>
-  <% @artist.albums.each do |album| %>
-    <li class="mb-4">
-      <%= image_tag album.image_url, class: 'w-32 h-32 rounded border-2 border-secondary overflow-hidden relative' %>
-      <h5 class="font-bold"><%= album.title %></h5>
-      <%= link_to 'Remove album', album_path(album), class: 'text-sm underline', method: :delete %>
-    </li>
-  <% end %>
-</ul>
+  <ul data-target="albums.albumsContainer">
+    <%= render @artist.albums %>
+  </ul>
+</div>

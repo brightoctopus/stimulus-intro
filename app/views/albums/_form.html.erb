@@ -1,4 +1,7 @@
-<%= form_with(model: [@artist, @album], local: true) do |form| %>
+<%= form_with model: [@artist, @album],
+              data: {
+                action: 'ajax:success->albums#success'
+              } do |form| %>
   <div>
     <%= form.label :title, class: 'font-bold' %>
   </div>
@@ -21,6 +24,9 @@
 
   <div class="mt-4">
     <%= form.button 'Save', class: 'border rounded b-primary bg-primary text-white px-6 py-2 cursor-pointer h-11' %>
-    <button class="border rounded b-warning bg-warning text-white px-6 py-2 cursor-pointer h-11">Cancel</button>
+    <button
+      data-action="albums#hideForm"
+      class="border rounded b-warning bg-warning text-white px-6 py-2 cursor-pointer h-11">
+    Cancel</button>
   </div>
 <% end %>
